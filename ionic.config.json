@@ -1,0 +1,8 @@
+{
+  "name": "world of Kaffe",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "e5bad27d"
+}
