@@ -1,0 +1,9 @@
+{
+    "/random.json": {
+      "target": "https://coffee.alexflipnote.dev",
+      "secure": true,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    }
+  }
+  
