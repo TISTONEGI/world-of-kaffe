@@ -10,9 +10,16 @@ import { AppComponent } from './app.component';
 // Importar HttpClientModule para usar em requisições HTTP
 import { HttpClientModule } from '@angular/common/http';
 
+import { CapitalizePipe } from './pipes/capitalize.pipe';
+import { HighlightDirective } from './directives/highlight.directive';
+import { ToggleStyleDirective } from './directives/toggle-style.directive';
+
 @NgModule({
   declarations: [
     AppComponent,
+    CapitalizePipe,
+    HighlightDirective,
+    ToggleStyleDirective
   ],
   imports: [
     BrowserModule,
