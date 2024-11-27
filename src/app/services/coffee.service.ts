@@ -6,13 +6,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class CoffeeService {
-  private baseUrl = 'https://coffee.alexflipnote.dev'; // URL base da API
+  private baseUrl = 'https://api.example.com/coffees'; // Substitua pela URL correta da API
 
   constructor(private http: HttpClient) {}
 
+  // Implementação do método getCoffeesByType
   getCoffeesByType(type: string): Observable<any[]> {
-    // Simula um filtro por tipo
-    const url = `${this.baseUrl}/filter?coffeeType=${type}`;
-    return this.http.get<any[]>(url);
+    return this.http.get<any[]>(`${this.baseUrl}?type=${type}`);
   }
 }

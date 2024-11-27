@@ -24,36 +24,27 @@ export class Tab1Page implements OnInit {
 
   ngOnInit() {}
 
-  // Função para carregar cafés aleatórios
+  // Função para carregar cafés aleatórios diretamente do HttpClient
   loadRandomCoffee() {
-    this.http.get<{ file: string }>('https://coffee.alexflipnote.dev/random.json').subscribe(
-      (response) => {
-        console.log('Imagem de café:', response.file);
-        this.coffeeImageUrl = response.file;
+    this.http.get<{ file: string }>('https://coffee.alexflipnote.dev/random.json').subscribe({
+      next: (data: { file: string }) => {
+        console.log('Imagem de café carregada:', data.file);
+        this.coffeeImageUrl = data.file;
       },
-      (error) => {
-        console.error('Erro ao carregar a imagem:', error);
-      }
-    );
+      error: (err: any) => {
+        console.error('Erro ao buscar café aleatório:', err);
+      },
+    });
   }
 
-  // Função para simular clique em um tipo de café
+  // Simula o clique em um tipo de café
   onCoffeeTypeClick(type: string) {
     this.hasSearched = true;
 
-    // Simula busca de cafés por tipo
-    this.http.get<any[]>('https://coffee.alexflipnote.dev/random.json').subscribe(
-      (response) => {
-        // API randomica - Simulando com dados fictícios
-        this.selectedCoffees = [
-          { name: `${type} Especial`, image: 'assets/default-coffee.jpg', description: 'Um ótimo café.' },
-          { name: `${type} Premium`, image: 'assets/default-coffee.jpg', description: 'Um café premium delicioso.' },
-        ];
-      },
-      (error) => {
-        console.error('Erro ao buscar cafés:', error);
-        this.selectedCoffees = [];
-      }
-    );
+    // Simulação de busca de cafés por tipo com dados fictícios
+    this.selectedCoffees = [
+      { name: `${type} Especial`, image: 'assets/default-coffee.jpg', description: 'Um ótimo café.' },
+      { name: `${type} Premium`, image: 'assets/default-coffee.jpg', description: 'Um café premium delicioso.' },
+    ];
   }
 }

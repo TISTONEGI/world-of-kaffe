@@ -26,10 +26,10 @@
   <ion-grid>
     <ion-row>
       <ion-col size="6" *ngFor="let item of coffeeTypes">
-        <ion-card class="coffee-card" (click)="onCoffeeTypeClick(item.name)">
+        <ion-card class="coffee-card" appHoverHighlight (click)="onCoffeeTypeClick(item.name)">
           <img [src]="item.image" alt="{{ item.name }}" class="coffee-image" />
           <ion-card-content>
-            <ion-text>{{ item.name }}</ion-text>
+            <ion-text>{{ item.name | uppercase }}</ion-text>
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -50,14 +50,14 @@
   </ion-list>
 
   <!-- Feedback para quando não houver resultados -->
-  <p class="feedback-message" *ngIf="selectedCoffees.length === 0 && hasSearched">
+  <p class="feedback-message" *appShowIf="selectedCoffees.length === 0 && hasSearched">
     Nenhum café encontrado para o tipo selecionado.
   </p>
 
   <!-- Botão para carregar imagem aleatória -->
   <div class="random-coffee-container">
     <ion-button expand="block" (click)="loadRandomCoffee()" color="primary" class="random-button">
-      Mostrar Café Aleatório
+      Surpreenda-se com um Café
     </ion-button>
 
     <!-- Imagem exibida após carregar -->
