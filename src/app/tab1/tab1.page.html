@@ -19,14 +19,11 @@
     </div>
   </div>
 
-  <!-- Barra de Busca -->
-  <ion-searchbar placeholder="Que aroma você está buscando hoje?"></ion-searchbar>
-
   <!-- Grid de Tipos de Café -->
   <ion-grid>
     <ion-row>
       <ion-col size="6" *ngFor="let item of coffeeTypes">
-        <ion-card class="coffee-card" appHoverHighlight (click)="onCoffeeTypeClick(item.name)">
+        <ion-card class="coffee-card" (click)="onCoffeeTypeClick(item)">
           <img [src]="item.image" alt="{{ item.name }}" class="coffee-image" />
           <ion-card-content>
             <ion-text>{{ item.name | uppercase }}</ion-text>
@@ -35,24 +32,6 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
-  <!-- Lista de Resultados -->
-  <ion-list *ngIf="selectedCoffees.length > 0">
-    <ion-item *ngFor="let coffee of selectedCoffees">
-      <ion-thumbnail slot="start">
-        <img [src]="coffee.image || 'assets/default-coffee.jpg'" alt="{{ coffee.name }}" />
-      </ion-thumbnail>
-      <ion-label>
-        <h3>{{ coffee.name }}</h3>
-        <p>{{ coffee.description || 'Descrição não disponível.' }}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
-
-  <!-- Feedback para quando não houver resultados -->
-  <p class="feedback-message" *appShowIf="selectedCoffees.length === 0 && hasSearched">
-    Nenhum café encontrado para o tipo selecionado.
-  </p>
 
   <!-- Botão para carregar imagem aleatória -->
   <div class="random-coffee-container">
