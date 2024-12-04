@@ -1,20 +1,49 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Detalhes da Receita</ion-title>
+    <!-- Logotipo -->
+    <ion-title>
+      <img src="/assets/logo.jpg" alt="World of Kaffee" style="height: 60px;" />
+    </ion-title>
+
+    <!-- Botão de voltar no canto esquerdo -->
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+
+    
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="recipe">
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>{{ recipe.title }}</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-list>
-        <ion-item *ngFor="let step of recipe.steps">
-          {{ step }}
-        </ion-item>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
+<ion-content>
+  
+  <div class="header-image">
+    <h1 class="kaffepedia-title">KAFFEPEDIA</h1>
+    <p class="subtitle">Aqui você encontra um mundo de curiosidades sobre cafés</p>
+  </div>
+
+  <!-- Filtros de busca -->
+  <div class="filters">
+    <ion-button color="medium" expand="block">Tipo de Café</ion-button>
+    <ion-button color="medium" expand="block">De A a Z</ion-button>
+    <ion-button color="medium" expand="block">País</ion-button>
+    <ion-button color="medium" expand="block">Filtragem</ion-button>
+  </div>
+
+  <!-- Lista dinâmica de cafés -->
+  <div *ngFor="let coffee of coffees" class="coffee-card">
+    <ion-img [src]="coffee.image" [alt]="coffee.name"></ion-img>
+    <h2 class="coffee-title">{{ coffee.name }}</h2>
+    <div class="coffee-details">
+      <p><strong>Tempo de Infusão:</strong> {{ coffee.infusionTime }}</p>
+      <p><strong>Filtragem:</strong> {{ coffee.filtration }}</p>
+      <p><strong>Diluição:</strong> {{ coffee.dilution }}</p>
+    </div>
+    <p class="coffee-description">{{ coffee.description }}</p>
+  </div>
+
+  <!-- Botão de Voltar -->
+  <ion-button expand="block" (click)="goBack()">Voltar</ion-button>
 </ion-content>
