@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CoffeeService } from '../services/coffee.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-tab3',
@@ -7,37 +7,15 @@ import { CoffeeService } from '../services/coffee.service';
   styleUrls: ['./tab3.page.scss'],
 })
 export class Tab3Page implements OnInit {
-  coffees: any[] = [];
-  searchText: string = '';
-  coffeeType: string = 'Cold Brew'; // Tipo de café inicial
+  recipe: any = null;
 
-  constructor(private coffeeService: CoffeeService) {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.fetchCoffees();
-  }
-
-  fetchCoffees() {
-    this.coffeeService.getCoffeesByType(this.coffeeType).subscribe({
-      next: (data) => {
-        this.coffees = data;
-      },
-      error: (err) => {
-        console.error('Erro ao buscar cafés:', err);
-      },
+    this.route.queryParams.subscribe((params) => {
+      if (params && params['recipe']) {
+        this.recipe = JSON.parse(params['recipe']);
+      }
     });
-  }
-
-  filterCoffees(event: any) {
-    this.searchText = event.target.value;
-  }
-
-  onCoffeeTypeChange(type: string) {
-    this.coffeeType = type;
-    this.fetchCoffees();
-  }
-
-  isSpecial(coffee: any): boolean {
-    return coffee.type === 'Cold Brew' || coffee.type === 'Espresso';
   }
 }

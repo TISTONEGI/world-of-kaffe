@@ -1,46 +1,63 @@
 <ion-header>
-  <ion-toolbar color="light">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <!-- Botão de voltar para Tab1 -->
+      <ion-button (click)="goBackToTab1()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>
-      <img src="assets/logo.jpg" alt="World of Kaffe" style="height: 60px;" />
+      <img src="assets/logo.jpg" alt="World of Kaffe" style="height: 40px;" />
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div *ngIf="selectedCoffee">
+<ion-content class="ion-padding">
+  <!-- Barra de busca -->
+  <ion-searchbar placeholder="Digite aqui a sua pesquisa"></ion-searchbar>
+
+  <!-- Filtros -->
+  <div class="filter-container">
+    <ion-button expand="block" color="light">Filtro avançado</ion-button>
+    <div class="filter-options">
+      <p>TIPO DE CAFÉ • TIPO DE IMAGEM • PAÍS</p>
+    </div>
+  </div>
+
+  <!-- Detalhes do café selecionado -->
+  <div class="coffee-details" *ngIf="selectedCoffee">
     <img [src]="selectedCoffee.image" alt="{{ selectedCoffee.name }}" class="coffee-image" />
     <ion-card>
       <ion-card-header>
-        <ion-card-title>{{ selectedCoffee.name }} - Descrição</ion-card-title>
+        <ion-card-title>{{ selectedCoffee.name }}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <p>Embarque em uma jornada sensorial com nosso café. Cada xícara é uma nova descoberta. 
-          Explore diferentes métodos de preparo e encontre o seu perfil de sabor perfeito.</p>
+        <p><strong>País de origem:</strong> {{ selectedCoffee.country }}</p>
+        <p><strong>Tamanho:</strong> {{ selectedCoffee.size }}</p>
+        <p><strong>Tipo de imagem:</strong> {{ selectedCoffee.fileType }}</p>
+        <p>{{ selectedCoffee.description }}</p>
+        <ion-button expand="block" color="primary">
+          Download
+          <ion-icon slot="end" name="download"></ion-icon>
+        </ion-button>
       </ion-card-content>
     </ion-card>
-
-    <!-- Botão de Voltar -->
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-button (click)="goBack()">
-          <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-      <ion-title>Detalhes do Café</ion-title>
-    </ion-toolbar>
-
-    <!-- Exibição das receitas -->
-    <ion-list>
-      <ion-item *ngFor="let recipe of coffeeRecipes">
-        <ion-label>
-          <h3>{{ recipe.title }}</h3>
-          <ion-list>
-            <ion-item *ngFor="let step of recipe.steps">
-              <ion-label>{{ step }}</ion-label>
-            </ion-item>
-          </ion-list>
-        </ion-label>
-      </ion-item>
-    </ion-list>
   </div>
+
+  <!-- Lista de cafés -->
+  <ion-list>
+    <ion-item
+      *ngFor="let coffee of coffeeList"
+      (click)="selectCoffee(coffee)"
+      [class.selected]="coffee === selectedCoffee"
+    >
+      <ion-label>{{ coffee.name }}</ion-label>
+      <ion-icon slot="end" name="arrow-forward"></ion-icon>
+    </ion-item>
+  </ion-list>
 </ion-content>
