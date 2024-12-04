@@ -19,7 +19,9 @@ export class Tab2Page {
   goBackToTab1() {
     this.router.navigate(['/tabs/tab1']);
   }
-
+  goToTab3() {
+    this.router.navigate(['/tabs/tab3']);
+  }
   selectCoffee(coffee: any) {
     this.selectedCoffee = coffee;
   }
