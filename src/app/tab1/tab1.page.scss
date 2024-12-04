@@ -1,4 +1,10 @@
 /* Estilização do banner */
+ion-content {
+  --ion-background-color: #FAF0E6;
+  color: #6D3D14;
+}
+
+
 .banner {
   position: relative;
   text-align: center;
@@ -10,6 +16,7 @@
   height: 200px;
   object-fit: cover;
   filter: brightness(0.7);
+  opacity: 70%;
 }
 
 .banner-text {
@@ -18,16 +25,25 @@
   left: 50%;
   transform: translate(-50%, -50%);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  color: #faffff;
+  font-weight: 300;
+  font-size: smaller;
 }
 
 .banner-text h1 {
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   margin: 0;
+  color: #faffff;
+  text-shadow: 2px 2px 4px #6D3D14;
 }
 
 .banner-text p {
-  font-size: 1rem;
-  margin-top: 10px;
+  font-size: 0.8rem;
+  font-weight: 200;
+  margin-top: 55px;
+  color: #faffff;
+  text-shadow: 2px 2px 4px #6D3D14;
+  
 }
 
 /* Estilização dos cartões */
@@ -35,6 +51,10 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   overflow: hidden;
+  text-align: center;
+  font-size: 0.5rem;
+  color: #6D3D14;
+  background-color: #faffff;
 }
 
 .coffee-image {
@@ -60,6 +80,8 @@
 .random-button {
   margin: 10px auto;
   max-width: 300px;
+  color: #6D3D14;
+
 }
 
 .random-coffee-image {

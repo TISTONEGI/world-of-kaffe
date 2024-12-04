@@ -1,3 +1,7 @@
+ion-content {
+  --ion-background-color: #FAF0E6;
+  color: #6D3D14;
+}
 .coffee-image {
     width: 100%;
     height: auto;
@@ -9,8 +13,9 @@
   }
   
   .filter-container {
-    margin: 10px 0;
+
     text-align: center;
+  
   }
   
   .filter-options p {
